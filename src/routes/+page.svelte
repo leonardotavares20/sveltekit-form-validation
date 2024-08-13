@@ -1,3 +1,9 @@
+<script>
+	export let form;
+
+	console.log(form);
+</script>
+
 <div class="lg:container mx-auto h-full w-full p-8">
 	<form method="POST" class="flex flex-col items-center w-full justify-center">
 		<h1 class="text-3xl font-medium text-center my-2">Register</h1>
@@ -5,9 +11,16 @@
 			<label for="name" class="label">
 				<span class="label-text">Name</span>
 			</label>
-			<input type="text" name="name" class="input w-full max-w-xs input-bordered" />
+			<input
+				value={form?.data?.name ?? ""}
+				type="text"
+				name="name"
+				class="input w-full max-w-xs input-bordered"
+			/>
 			<label for="name" class="label">
-				<span class="label-text-alt text-error" hidden>Validation Label</span>
+				{#if form?.errors?.name}
+					<span class="label-text-alt text-error">{form.errors.name[0]}</span>
+				{/if}
 			</label>
 		</div>
 		<div class="form-control w-full max-w-xs">
